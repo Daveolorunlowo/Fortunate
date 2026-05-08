@@ -1,0 +1,27 @@
+# dependencies
+node_modules/
+fortunate-hub/node_modules/
+
+# next.js
+fortunate-hub/.next/
+fortunate-hub/out/
+
+# production
+fortunate-hub/build/
+
+# env files
+.env*
+fortunate-hub/.env*
+
+# vercel
+fortunate-hub/.vercel
+
+# misc
+.DS_Store
+*.pem
+*.tsbuildinfo
+fortunate-hub/next-env.d.ts
+
+# Prisma
+fortunate-hub/prisma/dev.db
+fortunate-hub/prisma/dev.db-journal
