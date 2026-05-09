@@ -130,7 +130,7 @@ export async function getActiveOrders(): Promise<ActiveOrder[]> {
     customerName: order.customerName,
     phone: order.phone,
     address: order.address,
-    items: order.items as ActiveOrder["items"],
+    items: JSON.parse(order.items) as ActiveOrder["items"],
     totalAmount: order.totalAmount,
     status: order.status,
     isPaid: order.isPaid,

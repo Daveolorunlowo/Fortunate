@@ -7,7 +7,7 @@ import { OrderStatus, ReservationType, GymPlan, ReservationStatus } from "@prism
 import { addDays, addMonths, addYears } from "date-fns";
 
 export type ActionResult<T = void> =
-  | { success: true; data: T }
+  | { success: true; data?: T }
   | { success: false; error: string };
 
 export type OrderItem = {
