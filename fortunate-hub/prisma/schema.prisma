@@ -9,6 +9,33 @@ datasource db {
   url      = "file:./dev.db"
 }
 
+// ── Enums ──────────────────────────────────────────────────────────────────
+
+enum OrderStatus {
+  PENDING
+  PREPARING
+  COMPLETED
+  CANCELLED
+}
+
+enum ReservationStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+enum ReservationType {
+  RESTAURANT
+  LOUNGE
+}
+
+enum GymPlan {
+  DAY_PASS
+  MONTHLY_PRO
+  VIP_ANNUAL
+}
+
 // ── Models ─────────────────────────────────────────────────────────────────
 
 model Order {
@@ -18,7 +45,7 @@ model Order {
   address       String
   items         String   // JSON string in SQLite
   totalAmount   Float
-  status        String   @default("PENDING") // PENDING, PREPARING, COMPLETED, CANCELLED
+  status        OrderStatus @default(PENDING)
   paystackRef   String?
   isPaid        Boolean  @default(false)
 
@@ -35,12 +62,12 @@ model Reservation {
   customerName   String
   phone          String
   email          String?
-  type           String   // RESTAURANT, LOUNGE
+  type           ReservationType
   date           DateTime
   time           String   // e.g. "7:30 PM"
   guests         Int      @default(1)
   specialRequest String?
-  status         String   @default("PENDING") // PENDING, CONFIRMED, CANCELLED, COMPLETED
+  status         ReservationStatus @default(PENDING)
   totalAmount    Float    @default(0)
   paystackRef    String?
   isPaid         Boolean  @default(false)
@@ -60,7 +87,7 @@ model Membership {
   memberName  String
   phone       String
   email       String?
-  plan        String   // DAY_PASS, MONTHLY_PRO, VIP_ANNUAL
+  plan        GymPlan
   isActive    Boolean  @default(true)
   startDate   DateTime @default(now())
   expiryDate  DateTime 

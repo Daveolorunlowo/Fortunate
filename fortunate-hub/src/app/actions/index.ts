@@ -114,7 +114,7 @@ export async function saveOrder(data: {
         customerName: data.customerName,
         phone: data.phone,
         address: data.address,
-        items: data.items as any,
+        items: JSON.stringify(data.items),
         totalAmount: data.total,
         isPaid: data.isPaid,
         status: "PENDING",
@@ -137,7 +137,7 @@ export async function saveOrder(data: {
 
 export async function updateOrderStatus(
   orderId: string,
-  status: string
+  status: OrderStatus
 ): Promise<ActionResult> {
   try {
     await prisma.order.update({
